@@ -22,8 +22,8 @@ export const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const [userEmail, setUserEmail] = useState("");
-  const [userPassword, setuserPassword] = useState("");
+  const [userEmail, setUserEmail] = useState("eve.holt@reqres.in");
+  const [userPassword, setuserPassword] = useState("cityslicka");
 
   const authStatus = useSelector((store) => store.authReducer.authStatus);
   console.log(authStatus);
@@ -44,7 +44,8 @@ export const Login = () => {
 
   useEffect(() => {
     if (location.state && authStatus) {
-      navigate(location.state, { replace: true });
+      // navigate(location.state, { replace: true });
+      navigate("/home");
       // console.log('hey');
     }
   }, [location?.state, navigate, authStatus]);
@@ -77,7 +78,7 @@ export const Login = () => {
                     onChange={handleUserEmailChange}
                   />
                 </FormControl>
-                <FormControl id="password" isRequired>
+                <FormControl id="password" placeholder="cityslicka" isRequired>
                   <FormLabel>Password</FormLabel>
                   <Input
                     type="password"

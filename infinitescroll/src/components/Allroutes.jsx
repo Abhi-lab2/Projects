@@ -8,7 +8,8 @@ export const Allroutes = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<AuthWrapper><Home /></AuthWrapper> }></Route>
+        {/* <Route path="/home" element={<AuthWrapper><Home /></AuthWrapper> }></Route> */}
+        <Route path="/" element={<Home /> }></Route>
         <Route path="/login" element={<Login />}></Route>
       </Routes>
     </div>

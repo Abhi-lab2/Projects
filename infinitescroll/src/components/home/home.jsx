@@ -7,41 +7,47 @@ import ShareIcon from "@mui/icons-material/Share";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import "./home.css";
 import InputOption from "../inputOption";
+import Nav from "../navbar/navbar";
 
 export const Home = () => {
-    const [data, setData] = useState([]);
-    const [query, setQuery] = useState("code");
-    const [page, setPage] = useState(1);
-    const [hasMore, setHasMore] = useState(true);
-  
-    const client_id = "g_HE8n7UGVAyrbbEGbY57hdwAxPTLgXYLbox0XwZQ54";
-    const fetchUrl = `https://api.unsplash.com/search/photos?client_id=${client_id}&query=${query}&page=${page}`;
-  
-    const fetchImages = () => {
-      axios
-        .get(fetchUrl, {
-          headers: {},
-        })
-        .then((response) => {
-          setData([...data, ...response.data.results]);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      setPage(page + 1);
-    };
-    const searchImages = (e) => {
-      if (e.keyCode === 13) {
-        setQuery(e.target.value);
-        setData([]);
-      }
-    };
-  
-    useEffect(() => {
-      fetchImages();
-    }, [query]);
-  
-    return (
+  const [data, setData] = useState([]);
+  const [query, setQuery] = useState("code");
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+
+  const client_id = "g_HE8n7UGVAyrbbEGbY57hdwAxPTLgXYLbox0XwZQ54";
+  const fetchUrl = `https://api.unsplash.com/search/photos?client_id=${client_id}&query=${query}&page=${page}`;
+
+  const fetchImages = () => {
+    axios
+      .get(fetchUrl, {
+        headers: {},
+      })
+      .then((response) => {
+        setData([...data, ...response.data.results]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    setPage(page + 1);
+  };
+  const searchImages = (e) => {
+    if (e.keyCode === 13) {
+      setQuery(e.target.value);
+      setData([]);
+    }
+  };
+
+  useEffect(() => {
+    fetchImages();
+  }, [query]);
+
+  return (
+    <div>
+      <div>
+        <Nav />
+      </div>
+
       <div className="App flex">
         <input
           type="text"
@@ -75,5 +81,6 @@ export const Home = () => {
           </div>
         </InfiniteScroll>
       </div>
-    );
-}
+    </div>
+  );
+};
