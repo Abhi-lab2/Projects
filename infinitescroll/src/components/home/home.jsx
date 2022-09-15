@@ -8,12 +8,18 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import "./home.css";
 import InputOption from "../inputOption";
 import Nav from "../navbar/navbar";
+import { useNavigate } from "react-router-dom";
+import AnimeList from "./model";
 
 export const Home = () => {
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("code");
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const [model, setModel] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   const client_id = "g_HE8n7UGVAyrbbEGbY57hdwAxPTLgXYLbox0XwZQ54";
   const fetchUrl = `https://api.unsplash.com/search/photos?client_id=${client_id}&query=${query}&page=${page}`;
@@ -31,15 +37,29 @@ export const Home = () => {
       });
     setPage(page + 1);
   };
+  console.log("data:-", data);
+
   const searchImages = (e) => {
     if (e.keyCode === 13) {
       setQuery(e.target.value);
       setData([]);
     }
   };
+  const handleClick = () => {
+    setModel(true)
+
+  }
+  const setModalIsOpenToTrue = () => {
+    setModalIsOpen(true);
+  };
+
+  const setModalIsOpenToFalse = () => {
+    setModalIsOpen(false);
+  };
 
   useEffect(() => {
     fetchImages();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
   return (
@@ -75,7 +95,22 @@ export const Home = () => {
                 />
                 <h4>Photo by {data.user.name} 📸</h4>
                 <InputOption Icon={ThumbUpIcon} title="Like" color="gray" />
-                <InputOption Icon={CommentIcon} title="Comment" color="gray" />
+    
+                  {/* <InputOption
+                    Icon={CommentIcon}
+                    title="Comment"
+                    color="gray"
+                    onClick={setModalIsOpenToFalse}
+                  /> */}
+                  {/* <button onClick={setModalIsOpenToTrue}>Click to Open Modal</button> */}
+
+                    <InputOption Icon={CommentIcon}
+                    title="Comment"
+                    color="gray" isOpen={modalIsOpen}>
+                        <button onClick={setModalIsOpenToFalse}>x</button>
+                        <AnimeList/>
+                    </InputOption>
+                  <button onClick={() => handleClick}>X</button>
               </div>
             ))}
           </div>
