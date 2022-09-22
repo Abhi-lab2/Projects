@@ -28,19 +28,19 @@ const Selecttag = () => {
       return {
         ...styles,
         backgroundColor: data.color,
-        color: "#fff",
+        color: "#f50505",
       };
     },
     multiValueLabel: (styles, { data }) => {
       return {
         ...styles,
-        color: "#fff",
+        color: "#8b0000",
       };
     },
     multiValueRemove: (styles, { data }) => {
       return {
         ...styles,
-        color: "#fff",
+        color: "#d63535",
         cursor: "pointer",
         ":hover": {
           color: "#fff",

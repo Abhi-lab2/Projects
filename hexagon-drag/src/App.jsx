@@ -1,18 +1,17 @@
 import { HexGrid } from "react-hexgrid";
 import "./App.css";
-import TilesLayout from "./components/Hex";
 import Hex from "./components/Hex";
-import GameLayout from "./components/Hexlayout";
-import Layout from "./components/Hexlayout";
+import Hexagonall from "./components/Hexlayout";
+// import Layout from "./components/Hexlayout";
+import arrow from "./assets/arrow.png"
 
 function App() {
   return (
     <div className="App">
-      <h1>Hexagonal drag</h1>
+      <h1>Hexagonal drag <img src={arrow} alt="" width={'180px'} height={'85px'}/> </h1>
+      <p>drag n drop left to right, cordinates mentioned</p>
       <HexGrid width={1600} height={1000} viewBox="-50 -50 100 100">
-        {/* <Layout/> */}
-        {/* <TilesLayout/> */}
-        <GameLayout/>
+        <Hexagonall/>
         <Hex />
       </HexGrid>
     </div>
