@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export const todoSlice = createSlice({
+    // N R I
     name: 'todos',
     //dummy data
     initialState: [
@@ -31,7 +32,6 @@ export const todoSlice = createSlice({
         },
     },
 });
-
 
 export const { addTodo, toggleComplete, deleteTodo } = todoSlice.actions;
 
